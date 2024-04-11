@@ -17,3 +17,5 @@ merged_dataset.py
 old_create_test_set.py
 
 OtherUtils/createcustomfilters.m
+
+__pycache__/
