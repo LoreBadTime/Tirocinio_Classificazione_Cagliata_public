@@ -5,13 +5,15 @@ Datasetype = "Enhanced";
 setkey = "_" + Datasetype;
 set = setkey + "\";
 setnum = "Set_" + Dataset;
-if contains( pwd, 'GitHub')
-    basePath = 'D:\Datasets\CheeseQuater\1_Processed\';
-    
-else
-    basePath = 'F:\Download\Tirocinio-Classificazione-Cagliata\1_Processed\';
-end
-addpath("Utils\")
+base = mfilename("fullpath");
+[pathstr,~,~] = fileparts( base );
+pathstr = erase(pathstr, 'test');
+pathstr = pathstr+"\";
+addpath(pathstr + "Utils\");
+addpath(pathstr + "OtherUtils\");
+
+basePath = pathstr + '\1_Processed\';
+
 DataPath = basePath+ setnum + "\"+ setnum + set;
 
 
@@ -64,8 +66,8 @@ for i=1:length(labels)
       end
 end
 % salvataggio per scikit
-% save("b","Y")
-% save("a","features")
+save("b","Y")
+save("a","features")
 %%
 % codice filtering
 labels = imds.Labels;
@@ -76,6 +78,9 @@ tmp = [];
 %% var contiene la mutual information per feature
 % il terzo valore è il k del k nearest neighbor di scikit
 var = filter_mutual_inf(features_container,labels,3);
+format long;
+var
+
 %vero filtraggio utilizzando la mutual info ricavata in precedenza
 [features_container,tmp] = filter_mutual(features_container,var,1,99.9);
 %%

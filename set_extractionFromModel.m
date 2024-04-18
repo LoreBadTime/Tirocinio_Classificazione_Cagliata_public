@@ -16,7 +16,7 @@ pathstr = pathstr+"\";
 addpath(pathstr + "Utils\");
 addpath(pathstr + "OtherUtils\");
 
-reportfile = pathstr + 'report'+ setkey + setnum +'.txt';
+reportfile = pathstr + 'report'+ setkey + "excl_set_seq" + setnum +'.txt';
 pythonpath =  pathstr + "report.py";
 
 % datapath contiene il set di test

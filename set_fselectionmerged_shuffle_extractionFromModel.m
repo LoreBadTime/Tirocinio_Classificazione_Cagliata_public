@@ -15,7 +15,12 @@ pathstr = pathstr+"\";
 addpath(pathstr + "Utils\");
 addpath(pathstr + "OtherUtils\");
 
-reportfile = pathstr + 'report'+ setkey + setnum +'.txt';
+if Report == "1"
+    reportfile = pathstr + 'report'+ setkey + "feature_selection_static"+setnum +'.txt';
+else
+    reportfile = pathstr + 'report'+ setkey + "feature_selection_dynamic"+setnum +'.txt';
+end
+
 pythonpath =  pathstr + "report.py";
 
 DataPathTest = pathstr + '1_Processed\'+ setnum + "\"+ setnum + set;
@@ -86,6 +91,7 @@ switch (Datasetype)
         xception,"xception",'avg_pool'; ...
         inceptionresnetv2,"inceptionresnetv2",'avg_pool';
         };
+        % original è stato esportato come a in origine
         indexes = a;
 end
 %non sono riuscito a trovare squeezenet
@@ -105,13 +111,16 @@ stats.Properties.VariableNames = {'name','classes','macroAVG','microAVG','weight
 classificatori_affidabili = {};
 theshold_affidabilita_fscore = 0.98;
 
+if Report == "1"
 %feature selection statica
-[feature,YTrain] = merge_features_extractor_index_shuffle(models,DataPathTrain,indexes);
-
-%feature selection dinamica
-%[feature,indexes,YTrain] = merge_features_extractor(models,DataPathTrain,1);
+    [feature,YTrain] = merge_features_extractor_index_shuffle(models,DataPathTrain,indexes);
+else
+%feature selection dinamica, FA ANCHE LO SHUFFLE
+    [feature,indexes,YTrain] = merge_features_extractor(models,DataPathTrain,1);
 %save(setnum+Datasetype,"indexes");
 %return;
+end
+% Nel dataset in testing non fa lo shuffle
 [featureTest,YTest] = merge_features_extractor_index(models,DataPathTest,indexes);
 
 a = [table({""},[0,0],0,0,0);table({"dataset : "+ DataPathTest},[0,0],0,0,0)];
@@ -133,7 +142,7 @@ a = table({"end"},[0,0],0,0,0);
 a.Properties.VariableNames = {'name','classes','macroAVG','microAVG','weightAVG'};
 stats = [stats;a];
 try
-    if Report == "1"
+    if Report == "1" || Report == "2"
         sendreport(stats,reportfile,pythonpath,setkey);
     end
 catch

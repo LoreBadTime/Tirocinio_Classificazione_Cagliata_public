@@ -16,7 +16,7 @@ addpath(pathstr + "Utils\");
 addpath(pathstr + "OtherUtils\");
 
 DataPath = pathstr +'1_Processed\'+ setnum + "\"+ setnum + set;
-reportfile = pathstr + 'report'+ setkey + setnum +'.txt';
+reportfile = pathstr + 'report'+ setkey +"inset_kfold_seq" + setnum +'.txt';
 pythonpath =  pathstr + "report.py";
 
 
