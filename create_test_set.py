@@ -1,9 +1,11 @@
+from argparse import ArgumentError
 from PIL import Image
 import os
 import shutil
 import random
 import math,time
 import subprocess
+import sys
 
 # input ->  set i set sono i set da escludere nel merge è una lista, basedir path dove sono contenuti tutti i set    
 # output -> creazione set unico 20 
@@ -239,17 +241,33 @@ def merge_dataset_from_center(set,basedir,numimages):
 
 if __name__ == '__main__' :
     basedir = os.path.dirname(os.path.abspath(__file__))
-    
     basedir = basedir+'\\1_Processed\\'
+    try:
+        arg1 = str(sys.argv[0])
+        arg2 = int(sys.argv[1])
+    except IndexError:
+        print("Missing arguments for the script \nSyntax is \"create_test_set.py merge|ensemble set_number\"")
+        exit(-1)
+    
+    if(arg1 == "merge"):
+        merge_datasets([arg2],basedir)
+        #Alert: algorithm may suddently stop for some kind of write error(caused maybe from vs-code)
+        # be sure that all sets are present in the merged set, if there is this problem just restart the script
+        print("merge of sets except " + str(arg2) + "done, check the files if there are missing sets")
+    elif(arg1 == "ensemble"):
+        print("not yet automatized")
+    else:
+        print("error in the first argument, should be \"merge\" or \"ensemble\"")
+    
     
     #merge_dataset_from_center([10,13,11,12],basedir)
     
-    num = 15
+    #
 
     # il codice quà era un ciclo per iterare il processo di reporting
     # merge dataset preimpostato per fungere con il set 5
     #merge_dataset_from_center([3,4,6,7,8,9,10,11,12,13,14,16],basedir,3)
-    merge_datasets([5],basedir)
+    
     #discretize_set(basedir,20,2,2)
     #while num < 16:
     if(False):

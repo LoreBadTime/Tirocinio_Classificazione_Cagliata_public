@@ -1,12 +1,15 @@
-import numpy as np
+try:
+    import numpy as np
+    import scipy
+    from scipy.sparse import issparse
+    from scipy.special import digamma
+    from scipy.spatial import KDTree
+    from sklearn.neighbors import NearestNeighbors
+    import sklearn.feature_selection
+except:
+    print("missing libraries, skipping mutual information equivalence check with scipy")
+    exit(0)
 from numbers import Integral
-import scipy
-import numpy as np
-from scipy.sparse import issparse
-from scipy.special import digamma
-from scipy.spatial import KDTree
-from sklearn.neighbors import NearestNeighbors
-import sklearn.feature_selection
 import os
 
 
