@@ -243,13 +243,14 @@ if __name__ == '__main__' :
     basedir = os.path.dirname(os.path.abspath(__file__))
     basedir = basedir+'\\1_Processed\\'
     try:
-        arg1 = str(sys.argv[0])
-        arg2 = int(sys.argv[1])
+        arg1 = str(sys.argv[1])
+        arg2 = int(sys.argv[2])
     except IndexError:
         print("Missing arguments for the script \nSyntax is \"create_test_set.py merge|ensemble set_number\"")
         exit(-1)
     
     if(arg1 == "merge"):
+
         merge_datasets([arg2],basedir)
         #Alert: algorithm may suddently stop for some kind of write error(caused maybe from vs-code)
         # be sure that all sets are present in the merged set, if there is this problem just restart the script

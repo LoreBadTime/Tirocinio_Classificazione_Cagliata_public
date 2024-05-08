@@ -6,11 +6,12 @@ try:
     from scipy.spatial import KDTree
     from sklearn.neighbors import NearestNeighbors
     import sklearn.feature_selection
+    from numbers import Integral
+    import os
 except:
-    print("missing libraries, skipping mutual information equivalence check with scipy")
+    print("missing libraries(scipy,numpy,sklearn), skipping mutual information equivalence check with scipy")
     exit(0)
-from numbers import Integral
-import os
+
 
 
 # script usato per testare gli input e gli output della feature extraction 

@@ -1,17 +1,17 @@
 
-from __future__ import print_function
+#from __future__ import print_function
 import os.path
 import math
 import requests as rq
-from google.auth.transport.requests import Request
-from google.oauth2.credentials import Credentials
-from google_auth_oauthlib.flow import InstalledAppFlow
-from googleapiclient.discovery import build
-from googleapiclient.errors import HttpError
+#from google.auth.transport.requests import Request
+#from google.oauth2.credentials import Credentials
+#from google_auth_oauthlib.flow import InstalledAppFlow
+#from googleapiclient.discovery import build
+#from googleapiclient.errors import HttpError
 # Da quì poi invio il report direttamente a drive dopo
 import time,sys
-import numpy as np
-import pandas
+#import numpy as np
+#import pandas
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 
 # funzioni di supporto per reporting automatizzato

@@ -1,7 +1,6 @@
 % script utilizzato per testare la feature selection
+function [] = test_feature_selection(Dataset,Datasetype)
 
-Dataset = "4";
-Datasetype = "Enhanced";
 setkey = "_" + Datasetype;
 set = setkey + "\";
 setnum = "Set_" + Dataset;
@@ -84,4 +83,4 @@ var
 %vero filtraggio utilizzando la mutual info ricavata in precedenza
 [features_container,tmp] = filter_mutual(features_container,var,1,99.9);
 %%
-
+end
