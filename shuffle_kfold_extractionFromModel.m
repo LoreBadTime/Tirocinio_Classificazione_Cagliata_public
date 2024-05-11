@@ -13,7 +13,7 @@ addpath(pathstr + "Utils\");
 addpath(pathstr + "OtherUtils\");
 
 DataPath = pathstr +'1_Processed\'+ setnum + "\"+ setnum + set;
-reportfile = pathstr + 'report'+ setkey + "inset_kfold_shuffle" + setnum +'.txt';
+reportfile = pathstr + 'report'+ setkey + "_inset_kfold_shuffle_" + setnum +'.txt';
 pythonpath =  pathstr + "report.py";
 
 

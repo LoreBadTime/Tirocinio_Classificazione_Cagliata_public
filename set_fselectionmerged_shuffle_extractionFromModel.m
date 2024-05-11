@@ -16,9 +16,9 @@ addpath(pathstr + "Utils\");
 addpath(pathstr + "OtherUtils\");
 
 if Report == "1"
-    reportfile = pathstr + 'report'+ setkey + "feature_selection_static"+setnum +'.txt';
+    reportfile = pathstr + 'report'+ setkey + "_feature_selection_static_"+setnum +'.txt';
 else
-    reportfile = pathstr + 'report'+ setkey + "feature_selection_dynamic"+setnum +'.txt';
+    reportfile = pathstr + 'report'+ setkey + "_feature_selection_dynamic_"+setnum +'.txt';
 end
 
 pythonpath =  pathstr + "report.py";

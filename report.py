@@ -432,7 +432,7 @@ def local_main(set):
           if(model != tmp_model):
             requestbody.append( [tmp_model,"","","","","","","",""])
         k += 1
-    with open(reportfile+"parsed.txt","w+") as towrite:
+    with open(realpath+"\\results\\"+reportfile.split("\\")[-1]+"_parsed.txt","w+") as towrite:
         for line in requestbody:
             for elem in line:
                 towrite.write(" \""+str(elem)+" \""+" , ")
@@ -448,6 +448,7 @@ if __name__ == '__main__' :
     file =  str(sys.argv[1])
     reportfile = str(sys.argv[2])
     set = reportfile.split("_")[-1][0:2]
+    writedir = reportfile
     reportfile = reportfile.split("/")[-1]
     set = int(''.join(filter(str.isdigit, set)),10)
     #main(4)

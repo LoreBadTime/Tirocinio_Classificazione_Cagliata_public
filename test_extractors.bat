@@ -29,18 +29,20 @@ python -m create_test_set merge %testset%
  
 :: every test made with filter and set (No ensemble for now) (Enhanced, set testset), PARSED REPORTING AVAIABLE ONLY USING PYTHON 
 :: can be parallelized (just change the && with "start /high")
-echo "starting tests for dataset and filter,parsed results are in './results/' directory"
-echo "k_fold sequential inset "^
+echo starting tests for dataset and filter,parsed results are in './results/' directory
+echo k_fold sequential inset %testset% ^
 && runmatlab.bat kfold_extractionFromModel %testset% %filter% 1 ^
-echo  "k_fold shuffle inset" ^
+echo  k_fold shuffle inset %testset% ^
 && runmatlab.bat shuffle_kfold_extractionFromModel %testset% %filter% 1 ^
-echo  "n-1 marge,n excluded in test sequential" ^
+echo  n-1 marge,n excluded in test sequential %testset% ^
 && runmatlab.bat set_extractionFromModel %testset% %filter% 1 ^
-echo  "n-1 marge,n excluded in test shuffle" ^
+echo  n-1 marge,n excluded in test shuffle %testset% ^
 && runmatlab.bat set_shuffle_extractionFromModel %testset% %filter% 1 ^
-echo  "n-1 merge,n exluded feature selection Mutual info static (already-calculated features to select in a file)" ^
+echo  n-1 merge %testset% ,n exluded feature selection Mutual info static (already-calculated features to select in a file) ^
 && runmatlab.bat set_fselectionmerged_shuffle_extractionFromModel %testset% %filter% 1 ^
-echo  "n-1 merge,n exluded feature selection Mutual info dynamic (features to select calculated on the go)" ^
+echo  n-1 merge %testset% ,n exluded feature selection Mutual info dynamic (features to select calculated on the go) ^
 && runmatlab.bat set_fselectionmerged_shuffle_extractionFromModel %testset% %filter% 2  
 
+echo:
+echo testing terminato i risultati parsati si trovano nella cartella ./results/, risultati più dettagliati(non parsati) si trovano nella root assieme agli script
 :: enseble tests not provided for now (needs special configuration)

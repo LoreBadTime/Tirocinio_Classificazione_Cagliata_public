@@ -18,7 +18,7 @@ pathstr = pathstr+"\";
 addpath(pathstr + "Utils\");
 addpath(pathstr + "OtherUtils\");
 
-reportfile = pathstr + 'report'+ setkey + "excl_set_shuffle" + setnum +'.txt';
+reportfile = pathstr + 'report'+ setkey + "_excl_set_shuffle_" + setnum +'.txt';
 pythonpath =  pathstr + "report.py";
 
 DataPath = pathstr + '1_Processed\'+ setnum + "\"+ setnum + set;
