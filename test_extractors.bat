@@ -3,7 +3,6 @@ set filter=Enhanced
 :: automatic tests for specified set and specified filter 
 
 echo off
-echo Run this script only in cmd (not powershell)
 
 set var=%~dp0test\test_feature_selection
 set var=%var:\=/%
@@ -14,7 +13,7 @@ set test_mutual_info=base = mfilename("fullpath");[pathstr,~,~] = fileparts( bas
 echo %test_mutual_info% > testmf.m
 
 matlab -batch "run('testmf.m')" && del testmf.m && python test/test1.py ^
-&& echo the list is python output, check for both in the two outputs the last 10 entries, up until 5-4 decimal should be the same
+&& echo Generated mutual info test score by matlab and python, please check mutual_info files in "./test" directory
 
 echo:
 echo creating merge set (N_sets-set number %testset%)
@@ -30,7 +29,7 @@ python -m create_test_set merge %testset%
  
 :: every test made with filter and set (No ensemble for now) (Enhanced, set testset), PARSED REPORTING AVAIABLE ONLY USING PYTHON 
 :: can be parallelized (just change the && with "start /high")
-echo starting tests for dataset and filter,parsed results are in './results/' directory
+echo starting tests for dataset and filter
 echo k_fold sequential inset %testset% ^
 && runmatlab.bat kfold_extractionFromModel %testset% %filter% 1 ^
 echo  k_fold shuffle inset %testset% ^
@@ -45,5 +44,5 @@ echo  n-1 merge %testset% ,n exluded feature selection Mutual info dynamic (feat
 && runmatlab.bat set_fselectionmerged_shuffle_extractionFromModel %testset% %filter% 2  
 
 echo:
-echo testing terminato i risultati parsati si trovano nella cartella ./results/, risultati più dettagliati(non parsati) si trovano nella root assieme agli script
+echo test terminated, parsed results are in './results/' directory
 :: enseble tests not provided for now (needs special configuration)

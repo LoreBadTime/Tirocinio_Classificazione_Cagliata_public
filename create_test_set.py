@@ -79,6 +79,7 @@ def merge_datasets(set,basedir):
             pass
       except:
           pass
+    print("merge of sets except " + str(num) + " done, check the files if there are missing sets")
     # non serve
     #print(x)
     filelist = []
@@ -127,7 +128,7 @@ def discretize_set(basedir,toDiscretiza,divisionNeg, divisionPos):
                     j += 1 
 
     except Exception (e):
-        #print(e)
+        print(e)
     
 # input ->  i set da escludere nell'unione dei dataset e il numero di immagini dal centro
 # output -> set20 con i dataset uniti e con una sottocartella del 
@@ -254,7 +255,6 @@ if __name__ == '__main__' :
         merge_datasets([arg2],basedir)
         #Alert: algorithm may suddently stop for some kind of write error(caused maybe from vs-code)
         # be sure that all sets are present in the merged set, if there is this problem just restart the script
-        print("merge of sets except " + str(arg2) + "done, check the files if there are missing sets")
     elif(arg1 == "ensemble"):
         print("not yet automatized")
     else:

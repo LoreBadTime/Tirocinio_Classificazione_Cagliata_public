@@ -10,7 +10,7 @@ try:
     import os
 except:
     print("missing libraries(scipy,numpy,sklearn), skipping mutual information equivalence check test with scipy")
-    exit(0)
+    exit(-1)
 
 
 
@@ -37,4 +37,3 @@ nscores = 10
 with open("./test/mutual_info_python.txt","w+") as f:
     f.writelines([str(index+1)+","+str(x)+"\n" for index,x in enumerate(a)])
 #print("Last "+ str(nscores) + " scores :" +str(a[-nscores:]))
-print("Generated mutual info test score by matlab and python, please check mutual_info files in "+'"./test"'+"directory")
