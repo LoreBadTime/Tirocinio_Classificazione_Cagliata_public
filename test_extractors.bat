@@ -1,9 +1,10 @@
+set testset=10
+set filter=Enhanced
+:: automatic tests for specified set and specified filter 
+
 echo off
 echo Run this script only in cmd (not powershell)
 
-:: automatic tests for specified set and specified filter 
-set testset=10
-set filter=Enhanced
 set var=%~dp0test\test_feature_selection
 set var=%var:\=/%
 :: mutual information test(THIS TEST WILL BE SKIPPED IF SCIKIT/NUMPY ARE NOT INSTALLED)

@@ -9,7 +9,7 @@ try:
     from numbers import Integral
     import os
 except:
-    print("missing libraries(scipy,numpy,sklearn), skipping mutual information equivalence check with scipy")
+    print("missing libraries(scipy,numpy,sklearn), skipping mutual information equivalence check test with scipy")
     exit(0)
 
 
@@ -34,5 +34,7 @@ os.remove(file_path+".mat")
 
 a = sklearn.feature_selection.mutual_info_classif(a,b,n_neighbors=3)
 nscores = 10
+with open("mutual_info_python.txt","w+") as f:
+    f.writelines([str(x) for x in a])
 print("Last "+ str(nscores) + " scores :" +str(a[-nscores:]))
 

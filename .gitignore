@@ -19,3 +19,5 @@ old_create_test_set.py
 OtherUtils/createcustomfilters.m
 
 __pycache__/
+
+results/
