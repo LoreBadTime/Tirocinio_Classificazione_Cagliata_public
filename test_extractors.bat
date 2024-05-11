@@ -16,7 +16,7 @@ echo %test_mutual_info% > testmf.m
 matlab -batch "run('testmf.m')" && del testmf.m && python test/test1.py ^
 && echo the list is python output, check for both in the two outputs the last 10 entries, up until 5-4 decimal should be the same
 
-echo ""
+echo:
 echo creating merge set (N_sets-set number %testset%)
 python -m create_test_set merge %testset%
 

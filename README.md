@@ -38,7 +38,10 @@ Its needed to install this MATLAB packages to run the project:
 
 ### Optional
 
-To run the mutual information test equivalence between matlab and scipy omplementation you need to install scipy and numpy, otherwise the test is skipped and its just normally used the matlab version.
+To run the mutual information test equivalence between matlab and scipy implementation you need to install scipy and numpy, otherwise the test is skipped and its just normally used the matlab version.
+The test results are saved in "./test/mutual_info_*.txt" files and are the mutual information scores obtained from matlab and scikit algorithms on alexnet extracted features given a filter and a set.
+The files contain and index with associated mutual information score, that seems to be equal to up to the fifth decimal (this may be caused by differencies in random generation and machine number precision in both languages, the rest of digits are similar in terms of absolute values).
+
 ## Run Locally
 
 Clone the project
@@ -63,3 +66,5 @@ Edit the first 2 lines of the script "./test_extractors.bat" in the root of the 
 ```
 Save the bat and then run it.
 Parsed results of the iteraction will be stored in "./results" directory, raw results instead are stored in the root of the project.
+
+

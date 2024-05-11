@@ -78,8 +78,8 @@ tmp = [];
 % il terzo valore è il k del k nearest neighbor di scikit
 var = filter_mutual_inf(features_container,labels,3);
 format long;
-var
-writetable(var,"mutual_info_matlab.txt");
+%var
+writematrix(var,"mutual_info_matlab.txt");
 
 %vero filtraggio utilizzando la mutual info ricavata in precedenza
 [features_container,tmp] = filter_mutual(features_container,var,1,99.9);

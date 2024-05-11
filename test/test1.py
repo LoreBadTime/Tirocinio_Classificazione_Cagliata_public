@@ -34,7 +34,7 @@ os.remove(file_path+".mat")
 
 a = sklearn.feature_selection.mutual_info_classif(a,b,n_neighbors=3)
 nscores = 10
-with open("mutual_info_python.txt","w+") as f:
-    f.writelines([str(x) for x in a])
-print("Last "+ str(nscores) + " scores :" +str(a[-nscores:]))
-
+with open("./test/mutual_info_python.txt","w+") as f:
+    f.writelines([str(index+1)+","+str(x)+"\n" for index,x in enumerate(a)])
+#print("Last "+ str(nscores) + " scores :" +str(a[-nscores:]))
+print("Generated mutual info test score by matlab and python, please check mutual_info files in "+'"./test"'+"directory")

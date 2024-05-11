@@ -80,7 +80,7 @@ def merge_datasets(set,basedir):
       except:
           pass
     # non serve
-    print(x)
+    #print(x)
     filelist = []
     e = None
     i = None
@@ -127,7 +127,7 @@ def discretize_set(basedir,toDiscretiza,divisionNeg, divisionPos):
                     j += 1 
 
     except Exception (e):
-        print(e)
+        #print(e)
     
 # input ->  i set da escludere nell'unione dei dataset e il numero di immagini dal centro
 # output -> set20 con i dataset uniti e con una sottocartella del 
@@ -233,7 +233,7 @@ def merge_dataset_from_center(set,basedir,numimages):
             pass
       except:
           pass
-    print(x)
+    #print(x)
     filelist = []
 
 
