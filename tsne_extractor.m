@@ -20,15 +20,15 @@ models = {alexnet,"alexnet",'fc6'; ...
         efficientnetb0,"efficientnetb0",'efficientnet-b0|model|head|global_average_pooling2d|GlobAvgPool'; ...
         vgg16,"vgg16",'fc6'; ...
         vgg19,"vgg19",'fc6'};
-usedset =  "LocEntropy";
-setnums = ["4","5","6","9","10","11","12","13","14","15"];
-chosenset = "_" + usedset;
-colors = [];
-for k=1:length(setnums)
-    colors = [colors;rand(1,3)];
-end
-load colors.mat
 
+sets = ["Original","LocEntropy","LocStD","Enhanced"];
+setnums = ["4","5","6","9","10","11","12","13","14","15"];
+colors = [];
+
+load OtherUtils/colors.mat
+for o=1:length(sets)
+    usedset = sets(o);
+    chosenset = "_" + usedset;
 for j=1:length(models)
     model = models{j,1};
     size = model.Layers(1).InputSize(1:3);
@@ -47,6 +47,7 @@ for j=1:length(models)
         tsne_label_container = [tsne_label_container;repmat("Set"+setnums(i)+usedset,[1 length(imds.Files)])'];
     end
     f = figure;
+    disp("done")
     %f.WindowState = 'maximized';
     set(gca,'colororder',parula(32));
     Y = tsne(tsne_model_container);
@@ -57,7 +58,8 @@ for j=1:length(models)
     end
     title(modelname);
     legend('Location','southeastoutside');
-    saveas(f, modelname, 'png');
+    saveas(f, fullfile(pathstr+"results\"+modelname), 'png');
     close(f);
 
 end
+end 
