@@ -47,7 +47,7 @@ for j=1:length(models)
         tsne_label_container = [tsne_label_container;repmat("Set"+setnums(i)+usedset,[1 length(imds.Files)])'];
     end
     f = figure;
-    disp("done")
+    
     %f.WindowState = 'maximized';
     set(gca,'colororder',parula(32));
     Y = tsne(tsne_model_container);
@@ -60,6 +60,7 @@ for j=1:length(models)
     legend('Location','southeastoutside');
     saveas(f, fullfile(pathstr+"results\"+modelname), 'png');
     close(f);
+    disp("done"+modelname);
 
 end
 end 

@@ -437,6 +437,8 @@ def local_main(set):
             for elem in line:
                 towrite.write(" \""+str(elem)+" \""+" , ")
             towrite.write("\n")
+    
+    os.rename(reportfile,str(realpath+"\\raw\\"+reportfile.split("\\")[-1]))
     # request body è la tabella finale che andrà su drive
 
 if __name__ == '__main__' :

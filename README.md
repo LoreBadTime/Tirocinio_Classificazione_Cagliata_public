@@ -47,10 +47,10 @@ The files contain and index with associated mutual information score, that seems
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/LoreBadTime/Tirocinio_Classificazione_Cagliata_public
 ```
 
-Go to the project directory, and then put the "1_Processed" folder in the root of the project, directory should be like this.
+Go to the project directory, and then put the "1_Processed" folder in the root of the project,the root directory should be like this.
 
 ```
   ./Utils
@@ -58,13 +58,21 @@ Go to the project directory, and then put the "1_Processed" folder in the root o
   ./OtherUtils
   ./1_Processed
 ```
+### Important Note
+
+To make the reports automatic some ".bat" files are used, be sure that when using thuse files the terminal/cmd is in the project root
+
+### Set Report Generation
 
 Edit the first 2 lines of the script "./test_extractors.bat" in the root of the project to use your desired set and filter to test (Below the defalut example)
 ```
   set testset=10
   set filter=Enhanced
 ```
-Save the bat and then run it.
-Parsed results of the iteraction will be stored in "./results" directory, raw results instead are stored in the root of the project.
+Save the bat and then run it,(or replace the value to take directly the input if you want to use it as cmd interface).
+Parsed results of the iteraction will be stored in "./results" directory, raw results instead are stored in the "./raw" folder.
 
+### Tsne Report Generation
+
+Just start the file "tsne_extractor.bat"
 
