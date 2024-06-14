@@ -20,7 +20,12 @@ OtherUtils/createcustomfilters.m
 
 __pycache__/
 
-results/
+
+results/*
+!results/empty
+
+raw/*
+!raw/empty
 
 test/mutual_info_matlab.txt
 
