@@ -7,10 +7,10 @@
 
 Python and MATLAB are required to run the project, and needs to be installed in PATH(Python Needs to be able to be called form "python" command, and also MATLAB from matlab command).
 Support is limited to Windows, but could be easily ported to other platforms.Used Python version is 3.11.3
-Used MATLAB version is R2023a
+Used MATLAB version is R2024a
 but versions higher than those shouldn't cause problems.
 
-Its needed to install this MATLAB packages to run the project:
+Its needed to install some MATLAB packages to run the project, and from a new MATLAB installation, one can run the powershell script "setup.ps1"(As Administrator) to install requiered packages:
 
 - "Computer Vision Toolbox" by MathWorks
 - "Deep Learning HDL Toolbox" by MathWorks
@@ -60,11 +60,11 @@ Go to the project directory, and then put the "1_Processed" folder in the root o
 ```
 ### Important Note
 
-To make the reports automatic some ".bat" files are used, be sure that when using thuse files the terminal/cmd is in the project root
+To make the reports automatic some ".bat" files are used, be sure that when using thuse files the terminal/cmd is in the project root, NOT from vscode integrated terminal
 
 ### Set Report Generation
 
-Edit the first 2 lines of the script "./test_extractors.bat" in the root of the project to use your desired set and filter to test (Below the defalut example)
+Edit the first 2 lines of the script "./test_extractors.bat" in the root of the project to use your desired set and filter to test (Below the default example)
 ```
   set testset=10
   set filter=Enhanced
