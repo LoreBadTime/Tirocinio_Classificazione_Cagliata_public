@@ -136,7 +136,7 @@ def discretize_set(basedir,toDiscretiza,divisionNeg, divisionPos):
 #           immagini più al centro di ogni set (set20/set_20_test)
 def merge_dataset_from_center(set,basedir,numimages):
     k2 = numimages
-    originalset = [str(x) for x in range(17,1,-1)]
+    originalset = [str(x) for x in range(max(set),min(set),-1)]
     num = set
     
     try:
@@ -156,20 +156,17 @@ def merge_dataset_from_center(set,basedir,numimages):
 
     
     for x in originalset:
-      try:  
-        if(x in num):
-            raise Exception()
+      if(x not in num):
         try:
             shutil.copytree(basedir + '\\Set_'+
                      x +'\\',basedir + '\\Set_'+ tempsecondset +'\\')
         except FileNotFoundError:
-            raise Exception()
+            pass
 
         set = basedir + '\\Set_'+ tempsecondset +'\\'
         set_string = set[-7:-1]
         chosen_set = set + set_string
         for i in imgtype:
-            
             os.rename(
                 str(basedir + '\\Set_'+ tempsecondset +'\\Set_'+ x + i),
                 str(basedir + '\\Set_'+ tempsecondset +'\\Set_'+ tempsecondset + i)
@@ -183,8 +180,7 @@ def merge_dataset_from_center(set,basedir,numimages):
         for e in imgtype:
             for i in tipi:
                 try:
-                    os.makedirs(basedir + '\\Set_'+
-                                        "20" +'\\Set_20_Train\\'+ e + '\\' + i)
+                    os.makedirs(basedir + '\\Set_'+"20" +'\\Set_20_Train\\'+ e + '\\' + i)
                 except:
                     pass
                 allfiles = os.listdir(str(basedir + '\\Set_'+
@@ -204,37 +200,35 @@ def merge_dataset_from_center(set,basedir,numimages):
                 
                 for file in allfiles:
                     
-                    f = file[-7:-4]#8,4
+                    f = file[-8:-4]#8,4
+                    print(f)
                     typefile2 = e.split("_")[1]
                     
                     if f in filelist:
-                        os.rename(str(basedir + '\\Set_'+
+                        os.rename(str(basedir + 'Set_'+
                                         tempsecondset +'\\Set_'+ tempsecondset +  e +'\\'+ i +'\\'
-                                        #+ typefile2+'___DSC_'
+                                        + typefile2+'___DSC_'
                                         + f +'.JPG'),
-                        str(basedir + '\\Set_'+
+                        str(basedir + 'Set_'+
                                         "20" +'\\Set_20_Train\\'+ e +'\\'+ i +'\\'
                                         #+ typefile2+'___DSC_'
                                         + f + e + x +'.JPG'))
                     else:
                         shutil.move(
-                    str(basedir + '\\Set_'+
+                    str(basedir + 'Set_'+
                                         tempsecondset +'\\Set_'+ tempsecondset + e + '\\'+ i +'\\'
-                                          #+ typefile2 + '___DSC_'
+                                          + typefile2 + '___DSC_'
                                           + f +'.JPG' ),
-                    str(basedir + '\\Set_'+
+                    str(basedir + 'Set_'+
                                         "20" +'\\Set_'+ "20" + e + '\\'+ i +'\\'
                                           #+ typefile2 + '___DSC_'
                                           + f + e + x +'.JPG' ))
         tempsecondset = "27"
-        shutil.rmtree(str(basedir + '\\Set_'+ tempsecondset))
         try:
-            shutil.rmtree(str(basedir + '\\Set_' + tempsecondset))
+            shutil.rmtree(str(basedir + 'Set_' + tempsecondset))
         except:
             pass
-      except:
-          pass
-    #print(x)
+    print(x)
     filelist = []
 
 
@@ -243,6 +237,9 @@ def merge_dataset_from_center(set,basedir,numimages):
 if __name__ == '__main__' :
     basedir = os.path.dirname(os.path.abspath(__file__))
     basedir = basedir+'\\1_Processed\\'
+    
+    merge_dataset_from_center([3,4,5,6,7,8,9,11,12,13,14,15],basedir,3)
+    
     try:
         arg1 = str(sys.argv[1])
         arg2 = int(sys.argv[2])
@@ -255,8 +252,10 @@ if __name__ == '__main__' :
         merge_datasets([arg2],basedir)
         #Alert: algorithm may suddently stop for some kind of write error(caused maybe from vs-code)
         # be sure that all sets are present in the merged set, if there is this problem just restart the script
-    elif(arg1 == "ensemble"):
-        print("not yet automatized")
+    elif(arg1 == "ensemble_inset"):
+        # in set
+        #merge_dataset_from_center([5],basedir,3)
+        print("implementing")
     else:
         print("error in the first argument, should be \"merge\" or \"ensemble\"")
     
@@ -267,7 +266,6 @@ if __name__ == '__main__' :
 
     # il codice quà era un ciclo per iterare il processo di reporting
     # merge dataset preimpostato per fungere con il set 5
-    #merge_dataset_from_center([3,4,6,7,8,9,10,11,12,13,14,16],basedir,3)
     
     #discretize_set(basedir,20,2,2)
     #while num < 16:
