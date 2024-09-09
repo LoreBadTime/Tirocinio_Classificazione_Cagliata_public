@@ -13,14 +13,7 @@ def merge_datasets(set,basedir):
     originalset = [str(x) for x in range(0,17,1)]
     num = [str(x) for x in set]
     # rimozione set 20,set 27 delle iterazioni precedenti
-    try:
-        shutil.rmtree(str(basedir + '\\Set_20'))
-    except:
-        pass
-    try:
-        shutil.rmtree(str(basedir + '\\Set_27'))
-    except:
-        pass
+    
     # impostazione set 20 come set di arrivo di tutti i merge
     tempsecondset = "20"
     tipi = ['Positive','Negative']
@@ -92,10 +85,10 @@ def merge_datasets(set,basedir):
 # output -> set 23 che contiene immagini estratte a campioni regolari dal set 20 
 def discretize_set(basedir,toDiscretiza,divisionNeg, divisionPos):
     originalset = str(toDiscretiza)
-    setnum = "23"
+    setnum = "21"
 
-    shutil.copytree(basedir + '\\Set_'+
-                     originalset +'\\',basedir + '\\Set_'+ setnum +'\\')
+    shutil.copytree(basedir + '\\Set_'+ originalset +'\\',
+                     basedir + '\\Set_'+ setnum +'\\')
 
 
     set = basedir + '\\Set_'+ setnum +'\\'
@@ -126,8 +119,7 @@ def discretize_set(basedir,toDiscretiza,divisionNeg, divisionPos):
                     if(j % inti != 1):
                         os.remove(chosen_set + e +'\\'+ i +'\\' + allfiles[j])
                     j += 1 
-
-    except Exception (e):
+    except:
         print(e)
     
 # input ->  i set da escludere nell'unione dei dataset e il numero di immagini dal centro
@@ -138,15 +130,6 @@ def merge_dataset_from_center(set,basedir,numimages):
     k2 = numimages
     originalset = [str(x) for x in range(max(set),min(set),-1)]
     num = set
-    
-    try:
-        shutil.rmtree(str(basedir + '\\Set_20'))
-    except:
-        pass
-    try:
-        shutil.rmtree(str(basedir + '\\Set_27'))
-    except:
-        pass
     tempsecondset = "20"
     
     tipi = ['Positive','Negative']
@@ -180,7 +163,7 @@ def merge_dataset_from_center(set,basedir,numimages):
         for e in imgtype:
             for i in tipi:
                 try:
-                    os.makedirs(basedir + '\\Set_'+"20" +'\\Set_20_Train\\'+ e + '\\' + i)
+                    os.makedirs(basedir + 'Set_23\\Set_23'+ e + '\\' + i)
                 except:
                     pass
                 allfiles = os.listdir(str(basedir + '\\Set_'+
@@ -201,7 +184,7 @@ def merge_dataset_from_center(set,basedir,numimages):
                 for file in allfiles:
                     
                     f = file[-8:-4]#8,4
-                    print(f)
+                    #print(f)
                     typefile2 = e.split("_")[1]
                     
                     if f in filelist:
@@ -209,8 +192,7 @@ def merge_dataset_from_center(set,basedir,numimages):
                                         tempsecondset +'\\Set_'+ tempsecondset +  e +'\\'+ i +'\\'
                                         + typefile2+'___DSC_'
                                         + f +'.JPG'),
-                        str(basedir + 'Set_'+
-                                        "20" +'\\Set_20_Train\\'+ e +'\\'+ i +'\\'
+                        str(basedir +'\\Set_23\\Set_23'+ e +'\\'+ i +'\\'
                                         #+ typefile2+'___DSC_'
                                         + f + e + x +'.JPG'))
                     else:
@@ -228,8 +210,7 @@ def merge_dataset_from_center(set,basedir,numimages):
             shutil.rmtree(str(basedir + 'Set_' + tempsecondset))
         except:
             pass
-    print(x)
-    filelist = []
+    #print(x)
 
 
 
@@ -237,9 +218,24 @@ def merge_dataset_from_center(set,basedir,numimages):
 if __name__ == '__main__' :
     basedir = os.path.dirname(os.path.abspath(__file__))
     basedir = basedir+'\\1_Processed\\'
-    
-    merge_dataset_from_center([3,4,5,6,7,8,9,11,12,13,14,15],basedir,3)
-    
+
+    # eliminazione dei set temporanei
+    try:
+        shutil.rmtree(str(basedir + '\\Set_20'))
+    except:
+        pass
+    try:
+        shutil.rmtree(str(basedir + '\\Set_21'))
+    except:
+        pass
+    try:
+        shutil.rmtree(str(basedir + '\\Set_23'))
+    except:
+        pass
+    try:
+        shutil.rmtree(str(basedir + '\\Set_27'))
+    except:
+        pass
     try:
         arg1 = str(sys.argv[1])
         arg2 = int(sys.argv[2])
@@ -254,8 +250,12 @@ if __name__ == '__main__' :
         # be sure that all sets are present in the merged set, if there is this problem just restart the script
     elif(arg1 == "ensemble_inset"):
         # in set
-        #merge_dataset_from_center([5],basedir,3)
-        print("implementing")
+        sets = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+        sets.remove(arg2)
+        merge_dataset_from_center(sets,basedir,3)
+        discretize_set(basedir,20,3,3)
+        shutil.rmtree(str(basedir + 'Set_' + "20"))
+        print("")
     else:
         print("error in the first argument, should be \"merge\" or \"ensemble\"")
     

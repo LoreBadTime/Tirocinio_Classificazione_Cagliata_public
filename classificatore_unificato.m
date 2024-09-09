@@ -1,12 +1,21 @@
 % script di test dell'enseble
 
-TrainingSet = "21"
-ThirdLayerSet = "21"
-SecondLayerSet = "23"
 
-useThirdLayer = 0
+function [no_res] = classificatore_unificato(TrainingSet,SecondLayerSet,ThirdLayerSet,testingset,useThirdLayer)
 
+%TrainingSet = "21"
+%ThirdLayerSet = "21"
+%SecondLayerSet = "23"
+%testingset = "6"
 
+%useThirdLayer = 0
+
+% int() python equivalent required
+if useThirdLayer == "1"
+    useThirdLayer = 1;
+else 
+    useThirdLayer = 0;
+end
 
 base = mfilename("fullpath");
 [pathstr,~,~] = fileparts( base );
@@ -16,15 +25,15 @@ pathstr = pathstr+"\";
 
 
 sets = {
-    %"_Enhanced";
+    "_Enhanced";
     "_Original";"_LocStD";"_LocEntropy";};
 set_predictors = {
-   %extractionFromModel_test(TrainingSet,SecondLayerSet,"Enhanced",'0',ThirdLayerSet,useThirdLayer);
+   extractionFromModel_test(TrainingSet,SecondLayerSet,"Enhanced",'0',ThirdLayerSet,useThirdLayer);
    extractionFromModel_test(TrainingSet,SecondLayerSet,"Original",'0',ThirdLayerSet,useThirdLayer);
    extractionFromModel_test(TrainingSet,SecondLayerSet,"LocStD",'0',ThirdLayerSet,useThirdLayer);
    extractionFromModel_test(TrainingSet,SecondLayerSet,"LocEntropy",'0',ThirdLayerSet,useThirdLayer); 
 };
-testingset = "6"
+
 TestPath = pathstr +  "1_Processed"+ "\Set_"+testingset+"\"+"Set_"+ testingset;
 tmp = imageDatastore(TestPath+sets{1},'IncludeSubfolders',true,'LabelSource','foldernames');
 testimagesnum = length(tmp.Labels);
@@ -99,3 +108,4 @@ ylabel('somma ensemble(non-cagliata, cagliata)');
 % Place black lines along axes:
 xline(limit, 'Color', 'k', 'LineWidth', 2); % Draw line for Y axis.
 yline(0, 'Color', 'k', 'LineWidth', 2); % Draw line for X axis.)
+end
