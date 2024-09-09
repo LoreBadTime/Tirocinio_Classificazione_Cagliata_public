@@ -108,4 +108,6 @@ ylabel('somma ensemble(non-cagliata, cagliata)');
 % Place black lines along axes:
 xline(limit, 'Color', 'k', 'LineWidth', 2); % Draw line for Y axis.
 yline(0, 'Color', 'k', 'LineWidth', 2); % Draw line for X axis.)
+ax = gca;
+exportgraphics(ax,"export.jpg")
 end
