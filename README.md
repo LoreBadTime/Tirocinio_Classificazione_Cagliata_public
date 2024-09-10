@@ -76,3 +76,13 @@ Parsed results of the iteraction will be stored in "./results" directory, raw re
 
 Just start the file "tsne_extractor.bat"
 
+### Intra-Set Ensemble Experiment
+
+Edit the first line of the script "./ensemble_in_set.bat" in the root of the project to use your desired set to test (Below the default example)
+```
+  set testset=10
+```
+Save the bat and then run it,(or replace the value to take directly the input if you want to use it as cmd interface).
+
+During processing two subsets will be created from the starting set, consisting on few images (by default 12 in total) from that set.
+A new file will be created in the root (TODO: put the file in results) with .jpg extension, that contains the predictions for the specified set when using the two subsets as training.
