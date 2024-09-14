@@ -128,7 +128,7 @@ def discretize_set(basedir,toDiscretiza,divisionNeg, divisionPos):
 #           immagini più al centro di ogni set (set20/set_20_test)
 def merge_dataset_from_center(set,basedir,numimages):
     k2 = numimages
-    originalset = [str(x) for x in range(max(set),min(set),-1)]
+    originalset = [str(x) for x in range(max(set)+1,min(set),-1)]
     num = set
     tempsecondset = "20"
     
@@ -254,7 +254,7 @@ if __name__ == '__main__' :
         sets.remove(arg2)
         merge_dataset_from_center(sets,basedir,3)
         discretize_set(basedir,20,3,3)
-        shutil.rmtree(str(basedir + 'Set_' + "20"))
+        shutil.rmtree(str(basedir + '\\Set_20'))
         print("")
     else:
         print("error in the first argument, should be \"merge\" or \"ensemble\"")
