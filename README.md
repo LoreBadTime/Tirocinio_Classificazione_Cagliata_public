@@ -84,5 +84,8 @@ Edit the first line of the script "./ensemble_in_set.bat" in the root of the pro
 ```
 Save the bat and then run it,(or replace the value to take directly the input if you want to use it as cmd interface).
 
-During processing two subsets will be created from the starting set, consisting on few images (by default 12 in total) from that set.
-A new file will be created in the root (TODO: put the file in results) with .jpg extension, that contains the predictions for the specified set when using the two subsets as training.
+During processing two subsets will be created from the starting set, consisting on few images (by default 12 in total) from that set. At the end of the run a .jpg file will appear in "./results", consisting of the predictions of the chosen set using few images from it.
+
+### Inter-Set Ensemble Experiment
+
+Just start script "./ensemble_excl.bat" in the root of the project. During processing two subsets will be created from the starting set,at the end of the running test few graphs will appear in "./results" that contains the predictions on sets 4,5,6,9,10,11,12,14 with only using in training few images from set number 15 and the set number 13 for filtering the ensemble.
