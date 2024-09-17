@@ -109,5 +109,8 @@ ylabel('somma ensemble(non-cagliata, cagliata)');
 xline(limit, 'Color', 'k', 'LineWidth', 2); % Draw line for Y axis.
 yline(0, 'Color', 'k', 'LineWidth', 2); % Draw line for X axis.)
 ax = gca;
-exportgraphics(ax,"./results/ensemble_in_set " + testingset + "export.jpg")
+if useThirdLayer == 0
+    exportgraphics(ax,"./results/ensemble_in_set " + testingset + "export.jpg")
+else
+    exportgraphics(ax,"./results/ensemble_excl_set " + testingset + "export.jpg")
 end
